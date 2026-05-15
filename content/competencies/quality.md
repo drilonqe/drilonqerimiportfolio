@@ -20,6 +20,8 @@ Another strength is that we moved toward a more general way of storing majors an
 
 The project also shows quality because our  testing is good and the fact that we added a Makefile and GitHub Actions so tests can run more easily and automatically makes it more reliable than just looking at everything manually. 
 
-I also think the UI improved a lot from the MVP. The original version worked, but it looked more like a bad prototype. Later, we improved the layout, spacing, buttons, and accessibility. Everything looked so much better and I actually wanted to try the website.
+I also think the UI improved a lot from the MVP. The original version worked, but it looked kind of like a bad prototype. Later, we improved the layout, buttons, contrasts, added a nice background and so on. Everything looked so much better and I actually wanted to try the website.
+
+One weakness though is that  App.jsx still does too much for our webAPP. It handles a lot of the stuff like loadig the data, the state, course placement, the auto fill logic, warnings, major changes, and even more. It works, but it would be easier to understand for someone who looks at our code and easier to test if some of that logic was moved into smaller files. Maybe in the future we could have written helper files that lay out the jobs a bit more and are more clear to someone looking at our codebook. 
 
 ---
