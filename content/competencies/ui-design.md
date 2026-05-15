@@ -5,6 +5,7 @@ draft: false
 
 
 **Identify a portion of the user interface that you designed.**
+
 I designed the semester tables, the buttons for Major selector, Auto-Fill, Check Requirements, Reset, and so on. My teammate designed the requirements tree below and added Grinnell College as a background.
 
 ### How does your design adhere to one or more of the principles of interaction design?

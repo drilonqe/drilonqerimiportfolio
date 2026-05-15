@@ -14,5 +14,12 @@ draft: false
 
 Overall, I think our code has ended in a good place for a semester-long student project, with us being the smallest group out of everyone and also considering that all three of us having to learn a lot of the technologies while building the project. It is definitely not perfect but I do think that it shows that we can make something big in the future if we put our mind to it. We started with some very small MVP where a lot of the logic was in the frontend, and then over time we moved to a way more organized structure which I am very happy about.
 
+One strong aspect of our codebase is that we separated the frontend, backend, and data. The frontend is mostly responsible for showing the planner and handling user interaction, while the backend gets course and major data from SQL and sends it through API routes. This is better than hardcoding everything directly in the frontend because it makes the project easier to expand.
+
+Another strength is that we moved toward a more general way of storing majors and their requirements. When we first did the MVP for CS, we simply hardcoded the requirements but as we moved on, we storded more requirement and prereqs in SQL, and adding majors would not need us to rewrite the same code everytime. This was good in the aspect of extending the project to multiple majors.
+
+The project also shows quality because our  testing is good and the fact that we added a Makefile and GitHub Actions so tests can run more easily and automatically makes it more reliable than just looking at everything manually. 
+
+I also think the UI improved a lot from the MVP. The original version worked, but it looked more like a bad prototype. Later, we improved the layout, spacing, buttons, and accessibility. Everything looked so much better and I actually wanted to try the website.
 
 ---
