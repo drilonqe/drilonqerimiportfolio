@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Medium-scale Abstraction | Drilon Qerimi Portfolio</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Sample Location
+Repository: 4yearplanner
+Files:
+
+App.jsx
+
+Lines:
+
+229-312
+
+
+Code Sample
+function canPlaceCourse(plan, semesterIndex, code) {
+    const normalizedCode = normalizeCourse(code);
+    const course = courseMap[normalizedCode];
+    if (!course) return false;
+
+    const term = getTermFromSemesterName(plan[semesterIndex].name);
+    const completedBefore = getCompletedBeforeSemester(plan, semesterIndex);
+    const currentSemester = getCoursesInSemester(plan, semesterIndex);
+
+    if (isCourseAlreadyPlanned(plan, normalizedCode)) return false;
+    if (course.offered?.length &amp;&amp; !course.offered.includes(term)) return false;
+
+    const rule = course.registrationRule;
+    if (
+      rule?.minSemesterIndex !== null &amp;&amp;
+      rule?.minSemesterIndex !== undefined &amp;&amp;
+      semesterIndex &lt; rule.minSemesterIndex
+    ) {
+      return false;
+    }
+
+    if (
+      rule?.minPriorCoursesCount &amp;&amp;
+      countPriorCoursesMatchingRule(completedBefore, rule) &lt;
+        rule.minPriorCoursesCount
+    ) {
+      return false;
+    }
+
+    const isFirstYear = semesterIndex &lt;= 1;
+    const currentSemesterCourses = plan[semesterIndex].courses
+      .filter(Boolean)
+      .map(normalizeCourse);
+
+    const dept = normalizedCode.match(/^[A-Z]&#43;/)?.[0] ?? &#34;&#34;;
+    const sameDeptCourses = currentSemesterCourses.filter(
+      (c) =&gt; c.match(/^[A-Z]&#43;/)?.[0] === dept,
+    );
+
+    if (isFirstYear) {
+      // First year: max 1 per dept. Exception: CSC-208 may share a semester
+      // with one other CSC course (e.g. CSC-161 &#43; CSC-208 in Spring 1st Year).
+      if (normalizedCode.startsWith(&#34;CSC&#34;)) {
+        const has208Already = sameDeptCourses.includes(&#34;CSC208&#34;);
+        const isAdding208 = normalizedCode === &#34;CSC208&#34;;
+        if (has208Already || isAdding208) {
+          if (sameDeptCourses.length &gt;= 2) return false;
+        } else {
+          if (sameDeptCourses.length &gt;= 1) return false;
+        }
+      } else {
+        if (sameDeptCourses.length &gt;= 1) return false;
+      }
+    } else {
+      if (sameDeptCourses.length &gt;= 2) return false;
+    }
+    const prereqGroups = course.prerequisiteGroups || [];
+
+    // prevent high-level courses from appearing too early.
+    // Only applies when no specific prerequisites and no specific min_semester_index.
+    const hasExplicitMinSemester =
+      rule?.minSemesterIndex !== null &amp;&amp; rule?.minSemesterIndex !== undefined;
+    if (prereqGroups.length === 0 &amp;&amp; !hasExplicitMinSemester) {
+      const courseNum = getCourseNumber(normalizedCode);
+      if (courseNum &gt;= 300 &amp;&amp; semesterIndex &lt; 4) retu4rn false;
+      if (courseNum &gt;= 200 &amp;&amp; semesterIndex &lt; 2) return false;
+    }
+
+    for (const group of prereqGroups) {
+      const isSatisfied = group.options.some((prereq) =&gt; {
+        const normalizedPrereq = normalizeCourse(prereq);
+        return (
+          completedBefore.has(normalizedPrereq) ||
+          (group.canBeCorequisite &amp;&amp; currentSemester.has(normalizedPrereq))
+        );
+      });
+
+      if (!isSatisfied) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+My Contribution
+I contributed to writing the function canPlaceCourse. For the parts that were a bit easier and simpler, so checking if a course is already in the plan, checking if it&rsquo;s offered in the right term, and going through prerequisites, I wrote the code directly there. For the harder and more complicated parts I used Claude to help me. Now, to be specific, AI helped me with the level-based check that prevents 300-level courses from appearing too early, and with the logic in countPriorCoursesMatchingRule that counts how many prior courses match a department and number range, and also the code that extracts the department prefix from a course code so lines where I used (/^[A-Z]&#43;/) . I was reviewing everything what AI gave to me and made sure that it was right but it was helpful to get suggestions from Claude and help towards implementing the function.">
+    <meta name="generator" content="Hugo 0.161.0">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/drilonqerimiportfolio/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://drilonqe.github.io/drilonqerimiportfolio/competencies/medium-scale-abstraction/">
+    
+
+    
+    
+    <meta property="og:url" content="https://drilonqe.github.io/drilonqerimiportfolio/competencies/medium-scale-abstraction/">
+  <meta property="og:site_name" content="Drilon Qerimi Portfolio">
+  <meta property="og:title" content="Medium-scale Abstraction">
+  <meta property="og:description" content="Sample Location Repository: 4yearplanner
+Files:
+App.jsx Lines:
+229-312 Code Sample function canPlaceCourse(plan, semesterIndex, code) { const normalizedCode = normalizeCourse(code); const course = courseMap[normalizedCode]; if (!course) return false; const term = getTermFromSemesterName(plan[semesterIndex].name); const completedBefore = getCompletedBeforeSemester(plan, semesterIndex); const currentSemester = getCoursesInSemester(plan, semesterIndex); if (isCourseAlreadyPlanned(plan, normalizedCode)) return false; if (course.offered?.length &amp;&amp; !course.offered.includes(term)) return false; const rule = course.registrationRule; if ( rule?.minSemesterIndex !== null &amp;&amp; rule?.minSemesterIndex !== undefined &amp;&amp; semesterIndex &lt; rule.minSemesterIndex ) { return false; } if ( rule?.minPriorCoursesCount &amp;&amp; countPriorCoursesMatchingRule(completedBefore, rule) &lt; rule.minPriorCoursesCount ) { return false; } const isFirstYear = semesterIndex &lt;= 1; const currentSemesterCourses = plan[semesterIndex].courses .filter(Boolean) .map(normalizeCourse); const dept = normalizedCode.match(/^[A-Z]&#43;/)?.[0] ?? &#34;&#34;; const sameDeptCourses = currentSemesterCourses.filter( (c) =&gt; c.match(/^[A-Z]&#43;/)?.[0] === dept, ); if (isFirstYear) { // First year: max 1 per dept. Exception: CSC-208 may share a semester // with one other CSC course (e.g. CSC-161 &#43; CSC-208 in Spring 1st Year). if (normalizedCode.startsWith(&#34;CSC&#34;)) { const has208Already = sameDeptCourses.includes(&#34;CSC208&#34;); const isAdding208 = normalizedCode === &#34;CSC208&#34;; if (has208Already || isAdding208) { if (sameDeptCourses.length &gt;= 2) return false; } else { if (sameDeptCourses.length &gt;= 1) return false; } } else { if (sameDeptCourses.length &gt;= 1) return false; } } else { if (sameDeptCourses.length &gt;= 2) return false; } const prereqGroups = course.prerequisiteGroups || []; // prevent high-level courses from appearing too early. // Only applies when no specific prerequisites and no specific min_semester_index. const hasExplicitMinSemester = rule?.minSemesterIndex !== null &amp;&amp; rule?.minSemesterIndex !== undefined; if (prereqGroups.length === 0 &amp;&amp; !hasExplicitMinSemester) { const courseNum = getCourseNumber(normalizedCode); if (courseNum &gt;= 300 &amp;&amp; semesterIndex &lt; 4) retu4rn false; if (courseNum &gt;= 200 &amp;&amp; semesterIndex &lt; 2) return false; } for (const group of prereqGroups) { const isSatisfied = group.options.some((prereq) =&gt; { const normalizedPrereq = normalizeCourse(prereq); return ( completedBefore.has(normalizedPrereq) || (group.canBeCorequisite &amp;&amp; currentSemester.has(normalizedPrereq)) ); }); if (!isSatisfied) { return false; } } return true; } My Contribution I contributed to writing the function canPlaceCourse. For the parts that were a bit easier and simpler, so checking if a course is already in the plan, checking if it’s offered in the right term, and going through prerequisites, I wrote the code directly there. For the harder and more complicated parts I used Claude to help me. Now, to be specific, AI helped me with the level-based check that prevents 300-level courses from appearing too early, and with the logic in countPriorCoursesMatchingRule that counts how many prior courses match a department and number range, and also the code that extracts the department prefix from a course code so lines where I used (/^[A-Z]&#43;/) . I was reviewing everything what AI gave to me and made sure that it was right but it was helpful to get suggestions from Claude and help towards implementing the function.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="competencies">
+
+  <meta itemprop="name" content="Medium-scale Abstraction">
+  <meta itemprop="description" content="Sample Location Repository: 4yearplanner
+Files:
+App.jsx Lines:
+229-312 Code Sample function canPlaceCourse(plan, semesterIndex, code) { const normalizedCode = normalizeCourse(code); const course = courseMap[normalizedCode]; if (!course) return false; const term = getTermFromSemesterName(plan[semesterIndex].name); const completedBefore = getCompletedBeforeSemester(plan, semesterIndex); const currentSemester = getCoursesInSemester(plan, semesterIndex); if (isCourseAlreadyPlanned(plan, normalizedCode)) return false; if (course.offered?.length &amp;&amp; !course.offered.includes(term)) return false; const rule = course.registrationRule; if ( rule?.minSemesterIndex !== null &amp;&amp; rule?.minSemesterIndex !== undefined &amp;&amp; semesterIndex &lt; rule.minSemesterIndex ) { return false; } if ( rule?.minPriorCoursesCount &amp;&amp; countPriorCoursesMatchingRule(completedBefore, rule) &lt; rule.minPriorCoursesCount ) { return false; } const isFirstYear = semesterIndex &lt;= 1; const currentSemesterCourses = plan[semesterIndex].courses .filter(Boolean) .map(normalizeCourse); const dept = normalizedCode.match(/^[A-Z]&#43;/)?.[0] ?? &#34;&#34;; const sameDeptCourses = currentSemesterCourses.filter( (c) =&gt; c.match(/^[A-Z]&#43;/)?.[0] === dept, ); if (isFirstYear) { // First year: max 1 per dept. Exception: CSC-208 may share a semester // with one other CSC course (e.g. CSC-161 &#43; CSC-208 in Spring 1st Year). if (normalizedCode.startsWith(&#34;CSC&#34;)) { const has208Already = sameDeptCourses.includes(&#34;CSC208&#34;); const isAdding208 = normalizedCode === &#34;CSC208&#34;; if (has208Already || isAdding208) { if (sameDeptCourses.length &gt;= 2) return false; } else { if (sameDeptCourses.length &gt;= 1) return false; } } else { if (sameDeptCourses.length &gt;= 1) return false; } } else { if (sameDeptCourses.length &gt;= 2) return false; } const prereqGroups = course.prerequisiteGroups || []; // prevent high-level courses from appearing too early. // Only applies when no specific prerequisites and no specific min_semester_index. const hasExplicitMinSemester = rule?.minSemesterIndex !== null &amp;&amp; rule?.minSemesterIndex !== undefined; if (prereqGroups.length === 0 &amp;&amp; !hasExplicitMinSemester) { const courseNum = getCourseNumber(normalizedCode); if (courseNum &gt;= 300 &amp;&amp; semesterIndex &lt; 4) retu4rn false; if (courseNum &gt;= 200 &amp;&amp; semesterIndex &lt; 2) return false; } for (const group of prereqGroups) { const isSatisfied = group.options.some((prereq) =&gt; { const normalizedPrereq = normalizeCourse(prereq); return ( completedBefore.has(normalizedPrereq) || (group.canBeCorequisite &amp;&amp; currentSemester.has(normalizedPrereq)) ); }); if (!isSatisfied) { return false; } } return true; } My Contribution I contributed to writing the function canPlaceCourse. For the parts that were a bit easier and simpler, so checking if a course is already in the plan, checking if it’s offered in the right term, and going through prerequisites, I wrote the code directly there. For the harder and more complicated parts I used Claude to help me. Now, to be specific, AI helped me with the level-based check that prevents 300-level courses from appearing too early, and with the logic in countPriorCoursesMatchingRule that counts how many prior courses match a department and number range, and also the code that extracts the department prefix from a course code so lines where I used (/^[A-Z]&#43;/) . I was reviewing everything what AI gave to me and made sure that it was right but it was helpful to get suggestions from Claude and help towards implementing the function.">
+  <meta itemprop="wordCount" content="803">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Medium-scale Abstraction">
+  <meta name="twitter:description" content="Sample Location Repository: 4yearplanner
+Files:
+App.jsx Lines:
+229-312 Code Sample function canPlaceCourse(plan, semesterIndex, code) { const normalizedCode = normalizeCourse(code); const course = courseMap[normalizedCode]; if (!course) return false; const term = getTermFromSemesterName(plan[semesterIndex].name); const completedBefore = getCompletedBeforeSemester(plan, semesterIndex); const currentSemester = getCoursesInSemester(plan, semesterIndex); if (isCourseAlreadyPlanned(plan, normalizedCode)) return false; if (course.offered?.length &amp;&amp; !course.offered.includes(term)) return false; const rule = course.registrationRule; if ( rule?.minSemesterIndex !== null &amp;&amp; rule?.minSemesterIndex !== undefined &amp;&amp; semesterIndex &lt; rule.minSemesterIndex ) { return false; } if ( rule?.minPriorCoursesCount &amp;&amp; countPriorCoursesMatchingRule(completedBefore, rule) &lt; rule.minPriorCoursesCount ) { return false; } const isFirstYear = semesterIndex &lt;= 1; const currentSemesterCourses = plan[semesterIndex].courses .filter(Boolean) .map(normalizeCourse); const dept = normalizedCode.match(/^[A-Z]&#43;/)?.[0] ?? &#34;&#34;; const sameDeptCourses = currentSemesterCourses.filter( (c) =&gt; c.match(/^[A-Z]&#43;/)?.[0] === dept, ); if (isFirstYear) { // First year: max 1 per dept. Exception: CSC-208 may share a semester // with one other CSC course (e.g. CSC-161 &#43; CSC-208 in Spring 1st Year). if (normalizedCode.startsWith(&#34;CSC&#34;)) { const has208Already = sameDeptCourses.includes(&#34;CSC208&#34;); const isAdding208 = normalizedCode === &#34;CSC208&#34;; if (has208Already || isAdding208) { if (sameDeptCourses.length &gt;= 2) return false; } else { if (sameDeptCourses.length &gt;= 1) return false; } } else { if (sameDeptCourses.length &gt;= 1) return false; } } else { if (sameDeptCourses.length &gt;= 2) return false; } const prereqGroups = course.prerequisiteGroups || []; // prevent high-level courses from appearing too early. // Only applies when no specific prerequisites and no specific min_semester_index. const hasExplicitMinSemester = rule?.minSemesterIndex !== null &amp;&amp; rule?.minSemesterIndex !== undefined; if (prereqGroups.length === 0 &amp;&amp; !hasExplicitMinSemester) { const courseNum = getCourseNumber(normalizedCode); if (courseNum &gt;= 300 &amp;&amp; semesterIndex &lt; 4) retu4rn false; if (courseNum &gt;= 200 &amp;&amp; semesterIndex &lt; 2) return false; } for (const group of prereqGroups) { const isSatisfied = group.options.some((prereq) =&gt; { const normalizedPrereq = normalizeCourse(prereq); return ( completedBefore.has(normalizedPrereq) || (group.canBeCorequisite &amp;&amp; currentSemester.has(normalizedPrereq)) ); }); if (!isSatisfied) { return false; } } return true; } My Contribution I contributed to writing the function canPlaceCourse. For the parts that were a bit easier and simpler, so checking if a course is already in the plan, checking if it’s offered in the right term, and going through prerequisites, I wrote the code directly there. For the harder and more complicated parts I used Claude to help me. Now, to be specific, AI helped me with the level-based check that prevents 300-level courses from appearing too early, and with the logic in countPriorCoursesMatchingRule that counts how many prior courses match a department and number range, and also the code that extracts the department prefix from a course code so lines where I used (/^[A-Z]&#43;/) . I was reviewing everything what AI gave to me and made sure that it was right but it was helpful to get suggestions from Claude and help towards implementing the function.">
+
+      
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production is-page is-page page-medium-scale-abstraction">
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/drilonqerimiportfolio/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Drilon Qerimi Portfolio
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+
+  <article class="page-medium-scale-abstraction flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Competencies
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Medium-scale Abstraction</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><h3 id="sample-location">Sample Location</h3>
+<p>Repository: <code>4yearplanner</code></p>
+<p>Files:</p>
+<ul>
+<li><code>App.jsx</code></li>
+</ul>
+<p>Lines:</p>
+<ul>
+<li><code>229-312</code></li>
+</ul>
+<hr>
+<h3 id="code-sample">Code Sample</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">canPlaceCourse</span>(<span style="color:#a6e22e">plan</span>, <span style="color:#a6e22e">semesterIndex</span>, <span style="color:#a6e22e">code</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">normalizedCode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">normalizeCourse</span>(<span style="color:#a6e22e">code</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">course</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">courseMap</span>[<span style="color:#a6e22e">normalizedCode</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">course</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">term</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTermFromSemesterName</span>(<span style="color:#a6e22e">plan</span>[<span style="color:#a6e22e">semesterIndex</span>].<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">completedBefore</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCompletedBeforeSemester</span>(<span style="color:#a6e22e">plan</span>, <span style="color:#a6e22e">semesterIndex</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">currentSemester</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCoursesInSemester</span>(<span style="color:#a6e22e">plan</span>, <span style="color:#a6e22e">semesterIndex</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isCourseAlreadyPlanned</span>(<span style="color:#a6e22e">plan</span>, <span style="color:#a6e22e">normalizedCode</span>)) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">course</span>.<span style="color:#a6e22e">offered</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">course</span>.<span style="color:#a6e22e">offered</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">term</span>)) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rule</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">course</span>.<span style="color:#a6e22e">registrationRule</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rule</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">minSemesterIndex</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rule</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">minSemesterIndex</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">semesterIndex</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">rule</span>.<span style="color:#a6e22e">minSemesterIndex</span>
+</span></span><span style="display:flex;"><span>    ) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rule</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">minPriorCoursesCount</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">countPriorCoursesMatchingRule</span>(<span style="color:#a6e22e">completedBefore</span>, <span style="color:#a6e22e">rule</span>) <span style="color:#f92672">&lt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">rule</span>.<span style="color:#a6e22e">minPriorCoursesCount</span>
+</span></span><span style="display:flex;"><span>    ) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isFirstYear</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">semesterIndex</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">currentSemesterCourses</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">plan</span>[<span style="color:#a6e22e">semesterIndex</span>].<span style="color:#a6e22e">courses</span>
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">filter</span>(Boolean)
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">normalizeCourse</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dept</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">normalizedCode</span>.<span style="color:#a6e22e">match</span>(<span style="color:#e6db74">/^[A-Z]+/</span>)<span style="color:#f92672">?</span>.[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">??</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sameDeptCourses</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">currentSemesterCourses</span>.<span style="color:#a6e22e">filter</span>(
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">c</span>) =&gt; <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">match</span>(<span style="color:#e6db74">/^[A-Z]+/</span>)<span style="color:#f92672">?</span>.[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">===</span> <span style="color:#a6e22e">dept</span>,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isFirstYear</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// First year: max 1 per dept. Exception: CSC-208 may share a semester
+</span></span></span><span style="display:flex;"><span>      <span style="color:#75715e">// with one other CSC course (e.g. CSC-161 + CSC-208 in Spring 1st Year).
+</span></span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">normalizedCode</span>.<span style="color:#a6e22e">startsWith</span>(<span style="color:#e6db74">&#34;CSC&#34;</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">has208Already</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sameDeptCourses</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;CSC208&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isAdding208</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">normalizedCode</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;CSC208&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">has208Already</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">isAdding208</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameDeptCourses</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameDeptCourses</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameDeptCourses</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sameDeptCourses</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">prereqGroups</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">course</span>.<span style="color:#a6e22e">prerequisiteGroups</span> <span style="color:#f92672">||</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// prevent high-level courses from appearing too early.
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Only applies when no specific prerequisites and no specific min_semester_index.
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hasExplicitMinSemester</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rule</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">minSemesterIndex</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">rule</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">minSemesterIndex</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">prereqGroups</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">hasExplicitMinSemester</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">courseNum</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCourseNumber</span>(<span style="color:#a6e22e">normalizedCode</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">courseNum</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">300</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">semesterIndex</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#a6e22e">retu4rn</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">courseNum</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">200</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">semesterIndex</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">group</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">prereqGroups</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isSatisfied</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">group</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">some</span>((<span style="color:#a6e22e">prereq</span>) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">normalizedPrereq</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">normalizeCourse</span>(<span style="color:#a6e22e">prereq</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">completedBefore</span>.<span style="color:#a6e22e">has</span>(<span style="color:#a6e22e">normalizedPrereq</span>) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">group</span>.<span style="color:#a6e22e">canBeCorequisite</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">currentSemester</span>.<span style="color:#a6e22e">has</span>(<span style="color:#a6e22e">normalizedPrereq</span>))
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isSatisfied</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><hr>
+<h3 id="my-contribution">My Contribution</h3>
+<p>I contributed to writing the function <code>canPlaceCourse</code>. For the parts that were a bit easier and simpler, so checking if a course is already in the plan, checking if it&rsquo;s offered in the right term, and going through prerequisites, I wrote the code directly there. For the harder and more complicated parts I used Claude to help me. Now, to be specific, AI helped me with the level-based check that prevents 300-level courses from appearing too early, and with the logic in countPriorCoursesMatchingRule that counts how many prior courses match a department and number range, and also the code that extracts the department prefix from a course code so lines where I used <code>(/^[A-Z]+/)</code> . I was reviewing everything what AI gave to me and made sure that it was right but it was helpful to get suggestions from Claude and help towards implementing the function.</p>
+<hr>
+<h3 id="what-functionality-does-this-code-abstract-away">What functionality does this code abstract away?</h3>
+<p><code>canPlaceCourse</code> abstracts the rules that determine whether a course can in a valid way go into a specific semester spot. So this function checks if the course has been placed somewhere else in the plan, if it is offered that Semester (as we know some courses are only Fall or Spring), checks whether the student is taking a 300 level in first year(not really possible), if the prereqs are satisfied and including the cases where we have corequisites. So this process is all behind the scenes, and the autofill simply call <code>canPlaceCourse</code> and get a boolean answer back.</p>
+<hr>
+<h3 id="how-does-it-mechanically-achieve-abstraction">How does it mechanically achieve abstraction?</h3>
+<p>The function achieves abstraction in two ways. Firstly, we have checks that return false if something is wrong so these checks are all independent from each other. And the other way is that it uses some smaller helpers to do the data stuff instead of cramping everything in one place. So the functions like <code>getCompletedBeforeSemester</code> which is used to get courses already taken, <code>getCoursesInSemester</code> to get what we have in current semester or also something like <code>normalizeCourse</code> to make sure we are consistent with names and cases like CSC-151 and csc151 will be treated as the same thing. So <code>canPlaceCourse</code> uses all these results together and is more of like some checklist instead of doing all in one and having a big not understandable function.</p>
+<hr>
+<h2 id="what-purpose-does-this-abstraction-serve-in-the-larger-program">What purpose does this abstraction serve in the larger program?</h2>
+<p><code>canPlaceCourse</code> is the function in the code which we check with if we can place a course in a certain box of a semester. This is important since the auto-fill will check before it places any course in a slot, the manual type box checks it when the user types the course, and there is another function that gets the error and shows it in the UI to let the user know what went wrong. Without this abstraction, we would need to like build the rules for each function separately, and anytime some rule changed we would need to update it in multiple places which is not ideal.</p>
+<ul class="pa0">
+  
+</ul>
+
+      
+    </div></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://drilonqe.github.io/drilonqerimiportfolio/" >
+    &copy;  Drilon Qerimi Portfolio 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

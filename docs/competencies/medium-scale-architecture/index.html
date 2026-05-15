@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Medium-scale Architecture | Drilon Qerimi Portfolio</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Sample Location
+Repository: 4yearplanner
+Files:
+
+App.jsx,
+
+Code Sample
+// App.jsx lines 36-61
+ useEffect(() =&gt; {
+    async function loadPlannerData() {
+      try {
+        const [coursesResponse, majorsResponse] = await Promise.all([
+          fetch(&#34;/api/courses&#34;),
+          fetch(&#34;/api/majors&#34;),
+        ]);
+
+        if (!coursesResponse.ok || !majorsResponse.ok) {
+          throw new Error(&#34;Could not load planner data from SQL.&#34;);
+        }
+
+        const [courses, majorsList] = await Promise.all([
+          coursesResponse.json(),
+          majorsResponse.json(),
+        ]);
+
+        setCoursesData(courses);
+        setMajors(majorsList.majors);
+      } catch (error) {
+        setLoadError(error.message);
+      }
+    }
+
+    loadPlannerData();
+  }, []);
+
+  // App.jsx lines 919 - 924
+          &lt;SemestersTable
+            semesters={semesters}
+            onCourseSelect={handleManualCourseSelect}
+            courseOptions={coursesData?.courses || []} // added line so it doesn&#39;t break when coursesData is null during loading (Autosuggested)
+          /&gt;
+
+My Contribution
+I contributed to writing the frontend side of the architecture in App.jsx. For the parts that were a bit easier and simpler, like setting up the state variables for majors, selected major, courses data, and load errors, and then connecting that data back into the planner page, I worked on those parts independently. Then I had to look online or use Claude to explain the useEffect structure, the async/await, the Promise.all, and also try/catchwhen loading data from /api/courses and /api/majors. It was a good way to learn more about react features in general and knowing how to load data in ways that I have not really worked much before.
+Very helpful was React Documentation https://react.dev/reference/react/useEffect and youtube videos that I cannot find right now.">
+    <meta name="generator" content="Hugo 0.161.0">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/drilonqerimiportfolio/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://drilonqe.github.io/drilonqerimiportfolio/competencies/medium-scale-architecture/">
+    
+
+    
+    
+    <meta property="og:url" content="https://drilonqe.github.io/drilonqerimiportfolio/competencies/medium-scale-architecture/">
+  <meta property="og:site_name" content="Drilon Qerimi Portfolio">
+  <meta property="og:title" content="Medium-scale Architecture">
+  <meta property="og:description" content="Sample Location Repository: 4yearplanner
+Files:
+App.jsx, Code Sample // App.jsx lines 36-61 useEffect(() =&gt; { async function loadPlannerData() { try { const [coursesResponse, majorsResponse] = await Promise.all([ fetch(&#34;/api/courses&#34;), fetch(&#34;/api/majors&#34;), ]); if (!coursesResponse.ok || !majorsResponse.ok) { throw new Error(&#34;Could not load planner data from SQL.&#34;); } const [courses, majorsList] = await Promise.all([ coursesResponse.json(), majorsResponse.json(), ]); setCoursesData(courses); setMajors(majorsList.majors); } catch (error) { setLoadError(error.message); } } loadPlannerData(); }, []); // App.jsx lines 919 - 924 &lt;SemestersTable semesters={semesters} onCourseSelect={handleManualCourseSelect} courseOptions={coursesData?.courses || []} // added line so it doesn&#39;t break when coursesData is null during loading (Autosuggested) /&gt; My Contribution I contributed to writing the frontend side of the architecture in App.jsx. For the parts that were a bit easier and simpler, like setting up the state variables for majors, selected major, courses data, and load errors, and then connecting that data back into the planner page, I worked on those parts independently. Then I had to look online or use Claude to explain the useEffect structure, the async/await, the Promise.all, and also try/catchwhen loading data from /api/courses and /api/majors. It was a good way to learn more about react features in general and knowing how to load data in ways that I have not really worked much before. Very helpful was React Documentation https://react.dev/reference/react/useEffect and youtube videos that I cannot find right now.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="competencies">
+
+  <meta itemprop="name" content="Medium-scale Architecture">
+  <meta itemprop="description" content="Sample Location Repository: 4yearplanner
+Files:
+App.jsx, Code Sample // App.jsx lines 36-61 useEffect(() =&gt; { async function loadPlannerData() { try { const [coursesResponse, majorsResponse] = await Promise.all([ fetch(&#34;/api/courses&#34;), fetch(&#34;/api/majors&#34;), ]); if (!coursesResponse.ok || !majorsResponse.ok) { throw new Error(&#34;Could not load planner data from SQL.&#34;); } const [courses, majorsList] = await Promise.all([ coursesResponse.json(), majorsResponse.json(), ]); setCoursesData(courses); setMajors(majorsList.majors); } catch (error) { setLoadError(error.message); } } loadPlannerData(); }, []); // App.jsx lines 919 - 924 &lt;SemestersTable semesters={semesters} onCourseSelect={handleManualCourseSelect} courseOptions={coursesData?.courses || []} // added line so it doesn&#39;t break when coursesData is null during loading (Autosuggested) /&gt; My Contribution I contributed to writing the frontend side of the architecture in App.jsx. For the parts that were a bit easier and simpler, like setting up the state variables for majors, selected major, courses data, and load errors, and then connecting that data back into the planner page, I worked on those parts independently. Then I had to look online or use Claude to explain the useEffect structure, the async/await, the Promise.all, and also try/catchwhen loading data from /api/courses and /api/majors. It was a good way to learn more about react features in general and knowing how to load data in ways that I have not really worked much before. Very helpful was React Documentation https://react.dev/reference/react/useEffect and youtube videos that I cannot find right now.">
+  <meta itemprop="wordCount" content="460">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Medium-scale Architecture">
+  <meta name="twitter:description" content="Sample Location Repository: 4yearplanner
+Files:
+App.jsx, Code Sample // App.jsx lines 36-61 useEffect(() =&gt; { async function loadPlannerData() { try { const [coursesResponse, majorsResponse] = await Promise.all([ fetch(&#34;/api/courses&#34;), fetch(&#34;/api/majors&#34;), ]); if (!coursesResponse.ok || !majorsResponse.ok) { throw new Error(&#34;Could not load planner data from SQL.&#34;); } const [courses, majorsList] = await Promise.all([ coursesResponse.json(), majorsResponse.json(), ]); setCoursesData(courses); setMajors(majorsList.majors); } catch (error) { setLoadError(error.message); } } loadPlannerData(); }, []); // App.jsx lines 919 - 924 &lt;SemestersTable semesters={semesters} onCourseSelect={handleManualCourseSelect} courseOptions={coursesData?.courses || []} // added line so it doesn&#39;t break when coursesData is null during loading (Autosuggested) /&gt; My Contribution I contributed to writing the frontend side of the architecture in App.jsx. For the parts that were a bit easier and simpler, like setting up the state variables for majors, selected major, courses data, and load errors, and then connecting that data back into the planner page, I worked on those parts independently. Then I had to look online or use Claude to explain the useEffect structure, the async/await, the Promise.all, and also try/catchwhen loading data from /api/courses and /api/majors. It was a good way to learn more about react features in general and knowing how to load data in ways that I have not really worked much before. Very helpful was React Documentation https://react.dev/reference/react/useEffect and youtube videos that I cannot find right now.">
+
+      
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production is-page is-page page-medium-scale-architecture">
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/drilonqerimiportfolio/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Drilon Qerimi Portfolio
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+
+  <article class="page-medium-scale-architecture flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Competencies
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Medium-scale Architecture</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><h3 id="sample-location">Sample Location</h3>
+<p>Repository: <code>4yearplanner</code></p>
+<p>Files:</p>
+<ul>
+<li><code>App.jsx</code>,</li>
+</ul>
+<h3 id="code-sample">Code Sample</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// App.jsx lines 36-61
+</span></span></span><span style="display:flex;"><span> <span style="color:#a6e22e">useEffect</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">loadPlannerData</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">coursesResponse</span>, <span style="color:#a6e22e">majorsResponse</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> Promise.<span style="color:#a6e22e">all</span>([
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;/api/courses&#34;</span>),
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;/api/majors&#34;</span>),
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">coursesResponse</span>.<span style="color:#a6e22e">ok</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">majorsResponse</span>.<span style="color:#a6e22e">ok</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Could not load planner data from SQL.&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">courses</span>, <span style="color:#a6e22e">majorsList</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> Promise.<span style="color:#a6e22e">all</span>([
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">coursesResponse</span>.<span style="color:#a6e22e">json</span>(),
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">majorsResponse</span>.<span style="color:#a6e22e">json</span>(),
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setCoursesData</span>(<span style="color:#a6e22e">courses</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setMajors</span>(<span style="color:#a6e22e">majorsList</span>.<span style="color:#a6e22e">majors</span>);
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setLoadError</span>(<span style="color:#a6e22e">error</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">loadPlannerData</span>();
+</span></span><span style="display:flex;"><span>  }, []);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// App.jsx lines 919 - 924
+</span></span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">SemestersTable</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">semesters</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">semesters</span>}
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">onCourseSelect</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleManualCourseSelect</span>}
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">courseOptions</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">coursesData</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">courses</span> <span style="color:#f92672">||</span> []} <span style="color:#75715e">// added line so it doesn&#39;t break when coursesData is null during loading (Autosuggested)
+</span></span></span><span style="display:flex;"><span>          <span style="color:#960050;background-color:#1e0010">/&gt;</span>
+</span></span></code></pre></div><hr>
+<h3 id="my-contribution">My Contribution</h3>
+<p>I contributed to writing the frontend side of the architecture in App.jsx. For the parts that were a bit easier and simpler, like setting up the state variables for majors, selected major, courses data, and load errors, and then connecting that data back into the planner page, I worked on those parts independently. Then I had to look online or use Claude to explain the useEffect structure, the async/await, the Promise.all, and also try/catchwhen loading data from /api/courses and /api/majors. It was a good way to learn more about react features in general and knowing how to load data in ways that I have not really worked much before.
+Very helpful was React Documentation <a href="https://react.dev/reference/react/useEffect">https://react.dev/reference/react/useEffect</a> and youtube videos that I cannot find right now.</p>
+<hr>
+<h3 id="what-architectural-pattern-does-your-program-employ">What architectural pattern does your program employ?</h3>
+<p>Our web-app  uses a frontend and a backend. The frontend is the React website that the user interacts with, and the backend is what provides the course and major data through API routes. We chose this setup because the planner needs to display information to users, but it also needs to get the classes data from somewhere else instead of just hardcoding everything directly into the page. We first did everything in one place, (during the MVP, there was backend logic in the frontend) which we changed a little bit.</p>
+<hr>
+<h3 id="what-components-result-from-this-pattern-in-your-program">What components result from this pattern in your program?</h3>
+<p>The components that come from this pattern are the interface, the API and the data behind it. On the frontend we have like App.jsx and SemesterTable.jsx that are responsible for showing the 4year planner and the data behind it. On the backend, through API we have the courses, majors and major reqs which the frontend loads up and displays.</p>
+<hr>
+<h2 id="what-technologies-andor-libraries-make-up-each-of-the-components">What technologies and/or libraries make-up each of the components?</h2>
+<p>For the frontend, we used React with Vite and JavaScript. This is the part that builds the planner, handles the states, and lets the user like interact with the semester table. For the backend and data side, we used APIs and the data we have with SQL for courses and requirements, which allowed the planner to load the information instead of putting everything manually in the frontend.</p>
+<ul class="pa0">
+  
+</ul>
+
+      
+    </div></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://drilonqe.github.io/drilonqerimiportfolio/" >
+    &copy;  Drilon Qerimi Portfolio 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

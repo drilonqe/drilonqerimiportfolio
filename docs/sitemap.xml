@@ -2,10 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://drilonqe.github.io/drilonqerimiportfolio/categories/</loc>
-  </url><url>
     <loc>https://drilonqe.github.io/drilonqerimiportfolio/</loc>
   </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/categories/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/collaboration/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/evaluation/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/ideation/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/infrastructure/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/medium-scale-abstraction/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/medium-scale-architecture/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/needfinding/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/process/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/prototyping/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/self-learning/</loc>
+  </url><url>
     <loc>https://drilonqe.github.io/drilonqerimiportfolio/tags/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-infrastructure/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-strategies/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-technologies/</loc>
+  </url><url>
+    <loc>https://drilonqe.github.io/drilonqerimiportfolio/competencies/ui-design/</loc>
   </url>
 </urlset>
