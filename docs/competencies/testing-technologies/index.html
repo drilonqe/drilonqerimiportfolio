@@ -8,13 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Identify a portion of your test suite that utilizes advanced testing tools or techniques.
 What advanced testing tool or technology did you employ in your code?
-
-What did this tool/technology validate in your program?
-
-How effective was it in this task?
-
-In what contexts did you envision yourself utilizing this tool/technology in the future?
-">
+For advanced testing, I used Playwright, as PM advised me. Playwright as defined is an end to end testing tool which is a method of validating an app&rsquo;s workfrom start to finish, simulating realistic user scenarios. I had never used Playwright before so I used Claude Code to help me set up the testing suite and explain what the code was doing. As I was working wiht AI to do the tests, I was trying to understand how tests in Playwright open the page, how they click buttons, find text, and also mimic API responses.">
     <meta name="generator" content="Hugo 0.161.0">
     
     
@@ -49,19 +43,19 @@ In what contexts did you envision yourself utilizing this tool/technology in the
   <meta property="og:site_name" content="Drilon Qerimi Portfolio">
   <meta property="og:title" content="Testing Technologies:">
   <meta property="og:description" content="Identify a portion of your test suite that utilizes advanced testing tools or techniques.
-What advanced testing tool or technology did you employ in your code? What did this tool/technology validate in your program? How effective was it in this task? In what contexts did you envision yourself utilizing this tool/technology in the future?">
+What advanced testing tool or technology did you employ in your code? For advanced testing, I used Playwright, as PM advised me. Playwright as defined is an end to end testing tool which is a method of validating an app’s workfrom start to finish, simulating realistic user scenarios. I had never used Playwright before so I used Claude Code to help me set up the testing suite and explain what the code was doing. As I was working wiht AI to do the tests, I was trying to understand how tests in Playwright open the page, how they click buttons, find text, and also mimic API responses.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="competencies">
 
   <meta itemprop="name" content="Testing Technologies:">
   <meta itemprop="description" content="Identify a portion of your test suite that utilizes advanced testing tools or techniques.
-What advanced testing tool or technology did you employ in your code? What did this tool/technology validate in your program? How effective was it in this task? In what contexts did you envision yourself utilizing this tool/technology in the future?">
-  <meta itemprop="wordCount" content="54">
+What advanced testing tool or technology did you employ in your code? For advanced testing, I used Playwright, as PM advised me. Playwright as defined is an end to end testing tool which is a method of validating an app’s workfrom start to finish, simulating realistic user scenarios. I had never used Playwright before so I used Claude Code to help me set up the testing suite and explain what the code was doing. As I was working wiht AI to do the tests, I was trying to understand how tests in Playwright open the page, how they click buttons, find text, and also mimic API responses.">
+  <meta itemprop="wordCount" content="555">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Testing Technologies:">
   <meta name="twitter:description" content="Identify a portion of your test suite that utilizes advanced testing tools or techniques.
-What advanced testing tool or technology did you employ in your code? What did this tool/technology validate in your program? How effective was it in this task? In what contexts did you envision yourself utilizing this tool/technology in the future?">
+What advanced testing tool or technology did you employ in your code? For advanced testing, I used Playwright, as PM advised me. Playwright as defined is an end to end testing tool which is a method of validating an app’s workfrom start to finish, simulating realistic user scenarios. I had never used Playwright before so I used Claude Code to help me set up the testing suite and explain what the code was doing. As I was working wiht AI to do the tests, I was trying to understand how tests in Playwright open the page, how they click buttons, find text, and also mimic API responses.">
 
       
       
@@ -116,12 +110,96 @@ What advanced testing tool or technology did you employ in your code? What did t
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><p><strong>Identify a portion of your test suite that utilizes advanced testing tools or techniques.</strong></p>
 <h3 id="what-advanced-testing-tool-or-technology-did-you-employ-in-your-code">What advanced testing tool or technology did you employ in your code?</h3>
+<p>For advanced testing, I used Playwright, as PM advised me. Playwright as defined is an end to end testing tool which is a method of validating an app&rsquo;s workfrom start to finish, simulating realistic user scenarios. I had never used Playwright before so I used Claude Code to help me set up the testing suite and explain what the code was doing. As I was working wiht AI to do the tests, I was trying to understand how tests in Playwright open the page, how they click buttons, find text, and also mimic API responses.</p>
 <hr>
 <h3 id="what-did-this-tooltechnology-validate-in-your-program">What did this tool/technology validate in your program?</h3>
+<p>Playwright tests checked that the page loads, that the Grinnell College header appears, and that the course table shows up. They also checked that all 8 semesters appear. The tests also checked user interactions. So one example would be that it tested that clicking + Add course opens the department dropdown, that choosing CSC only shows CSC courses, and that selecting a course actually puts it into the semester slot. They also tested that the Reset Plan button clears added courses, that Check Requirements updates the requirements panel, and that switching majors resets the plan. The tests used fake courses, fake majors, and fake requirement data to do extensive testing.</p>
+<p>Here are the 17 tests that passed:</p>
+<table>
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Test</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Grinnell College name shows in the header</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Shows the 4-Year Planner label in the header</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Loads the course table after data comes in</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>All 8 semesters show up</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Clicking an empty slot opens the department dropdown</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>Can pick a department from the dropdown</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>Only CSC courses appear after picking CSC</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>Selecting a course closes the dropdown and shows the course id</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>Reset Plan button is visible</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td>Check Requirements button is visible</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td>Auto-Fill button is visible</td>
+      </tr>
+      <tr>
+          <td>12</td>
+          <td>Clicking Reset Plan clears any added courses</td>
+      </tr>
+      <tr>
+          <td>13</td>
+          <td>Major requirements panel heading shows up</td>
+      </tr>
+      <tr>
+          <td>14</td>
+          <td>Clicking Check Requirements shows the requirements status</td>
+      </tr>
+      <tr>
+          <td>15</td>
+          <td>Requirement blocks are listed in the panel</td>
+      </tr>
+      <tr>
+          <td>16</td>
+          <td>Major dropdown shows Computer Science by default</td>
+      </tr>
+      <tr>
+          <td>17</td>
+          <td>Switching the major resets the plan</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>17 / 17 passed in 4.5s</strong></p>
 <hr>
 <h3 id="how-effective-was-it-in-this-task">How effective was it in this task?</h3>
+<p>Playwright was pretty effective because it tested the app in the same way a user would actually use it as per end to end testing principles. So, it opened the planner page, clicked buttons, selected dropdown options, checked that the page changed correctly and a bunch of other things that a user would do to make sure that we have no hiden bug. When I ran the test suite, all 17 tests passed in about 4.5 seconds, so it was also very fast.</p>
 <hr>
 <h3 id="in-what-contexts-did-you-envision-yourself-utilizing-this-tooltechnology-in-the-future">In what contexts did you envision yourself utilizing this tool/technology in the future?</h3>
+<p>I would use Playwright again for web apps where user action is important. So if I was building a webApp that the users would interact with, I would want tests that actually click through the page like a real user. But that is the full extent. I do not think I would use it for small functions because I can just use unit testing for that.</p>
 <hr>
 <ul class="pa0">
   

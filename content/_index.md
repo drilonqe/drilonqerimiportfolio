@@ -153,4 +153,9 @@ User Interface Design
 <div class="advanced-sublabel">Design</div>
 </a>
 
+<a class="card-advanced" href="/drilonqerimiportfolio/competencies/quality/">
+Quality
+<div class="advanced-sublabel">Engineering</div>
+</a>
+
 </div>
