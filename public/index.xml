@@ -91,5 +91,19 @@
       <guid>https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-strategies/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Identify a component of your project that you were responsible for testing.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;One component I was responsible for testing is SemestersTable, which lives in src/components/semestersTable.jsx. This is, I would say, very important to the frontend end of our WebApp since it renders the table we see, manages the dropdowns when you click an empty slot, and lets a student pick a course. I was in charge of implementing this and I added some testing while I was doing so as well.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Testing Technologies:</title>
+      <link>https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-technologies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-technologies/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Identify a portion of your test suite that utilizes advanced testing tools or techniques.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-advanced-testing-tool-or-technology-did-you-employ-in-your-code&#34;&gt;What advanced testing tool or technology did you employ in your code?&lt;/h3&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;what-did-this-tooltechnology-validate-in-your-program&#34;&gt;What did this tool/technology validate in your program?&lt;/h3&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;how-effective-was-it-in-this-task&#34;&gt;How effective was it in this task?&lt;/h3&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;in-what-contexts-did-you-envision-yourself-utilizing-this-tooltechnology-in-the-future&#34;&gt;In what contexts did you envision yourself utilizing this tool/technology in the future?&lt;/h3&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>User Interface Design:</title>
+      <link>https://drilonqe.github.io/drilonqerimiportfolio/competencies/ui-design/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://drilonqe.github.io/drilonqerimiportfolio/competencies/ui-design/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Identify a portion of the user interface that you designed.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;how-does-your-design-adhere-to-one-or-more-of-the-principles-of-interaction-design&#34;&gt;How does your design adhere to one or more of the principles of interaction design?&lt;/h3&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;what-alternative-designs-did-you-consider-describe-at-least-one-and-why-did-the-current-design-prevail-appealing-to-the-principles-of-interaction-design&#34;&gt;What alternative designs did you consider (describe at least one) and why did the current design prevail, appealing to the principles of interaction design?&lt;/h3&gt;&#xA;&lt;hr&gt;</description>
+    </item>
   </channel>
 </rss>
