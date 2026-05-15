@@ -24,4 +24,8 @@ I also think the UI improved a lot from the MVP. The original version worked, bu
 
 One weakness though is that  App.jsx still does too much for our webAPP. It handles a lot of the stuff like loadig the data, the state, course placement, the auto fill logic, warnings, major changes, and even more. It works, but it would be easier to understand for someone who looks at our code and easier to test if some of that logic was moved into smaller files. Maybe in the future we could have written helper files that lay out the jobs a bit more and are more clear to someone looking at our codebook. 
 
+Another weakness is that the course and major requirement data can change every year. Right now, a lot of our data depends on what we manually put into the SQL files. That works for the project, but it would be hard to maintain long-term because Grinnell’s catalog changes over time. If a requirement changes on the course website, our planner could become outdated.
+
+If we had more time, I would want to build some kind of scraper or importer that could pull updated course and requirement information from the Grinnell catalog website. Then we could update the database more automatically instead of manually editing SQL files every year. That would make the app more reliable and easier to keep current.
+
 ---
