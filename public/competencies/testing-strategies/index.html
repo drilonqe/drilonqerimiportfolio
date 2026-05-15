@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Testing strategies: | Drilon Qerimi Portfolio</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Identify a component of your project that you were responsible for testing.
+One component I was responsible for testing is SemestersTable, which lives in src/components/semestersTable.jsx. This is, I would say, very important to the frontend end of our WebApp since it renders the table we see, manages the dropdowns when you click an empty slot, and lets a student pick a course. I was in charge of implementing this and I added some testing while I was doing so as well.">
+    <meta name="generator" content="Hugo 0.161.0">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/drilonqerimiportfolio/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-strategies/">
+    
+
+    
+    
+    <meta property="og:url" content="https://drilonqe.github.io/drilonqerimiportfolio/competencies/testing-strategies/">
+  <meta property="og:site_name" content="Drilon Qerimi Portfolio">
+  <meta property="og:title" content="Testing strategies:">
+  <meta property="og:description" content="Identify a component of your project that you were responsible for testing.
+One component I was responsible for testing is SemestersTable, which lives in src/components/semestersTable.jsx. This is, I would say, very important to the frontend end of our WebApp since it renders the table we see, manages the dropdowns when you click an empty slot, and lets a student pick a course. I was in charge of implementing this and I added some testing while I was doing so as well.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="competencies">
+
+  <meta itemprop="name" content="Testing strategies:">
+  <meta itemprop="description" content="Identify a component of your project that you were responsible for testing.
+One component I was responsible for testing is SemestersTable, which lives in src/components/semestersTable.jsx. This is, I would say, very important to the frontend end of our WebApp since it renders the table we see, manages the dropdowns when you click an empty slot, and lets a student pick a course. I was in charge of implementing this and I added some testing while I was doing so as well.">
+  <meta itemprop="wordCount" content="306">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Testing strategies:">
+  <meta name="twitter:description" content="Identify a component of your project that you were responsible for testing.
+One component I was responsible for testing is SemestersTable, which lives in src/components/semestersTable.jsx. This is, I would say, very important to the frontend end of our WebApp since it renders the table we see, manages the dropdowns when you click an empty slot, and lets a student pick a course. I was in charge of implementing this and I added some testing while I was doing so as well.">
+
+      
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production is-page is-page page-testing-strategies">
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/drilonqerimiportfolio/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Drilon Qerimi Portfolio
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+
+  <article class="page-testing-strategies flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Competencies
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Testing strategies:</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><p><strong>Identify a component of your project that you were responsible for testing.</strong></p>
+<p>One component I was responsible for testing is SemestersTable, which lives in src/components/semestersTable.jsx. This is, I would say, very important to the frontend end of our WebApp since it renders the table we see, manages the dropdowns when you click an empty slot, and lets a student pick a course. I was in charge of implementing this and I added some testing while I was doing so as well.</p>
+<h3 id="according-to-code-coverage-tools-what-aspects-of-this-component-are-covered-with-tests-what-kinds-of-tests-are-they">According to code coverage tools, what aspects of this component are covered with tests? What kinds of tests are they?</h3>
+<p>I ran make coverage and these are the numbers I got for semestersTable.jsx:</p>
+<ul>
+<li>Statements: 76%</li>
+<li>Branches: 78%</li>
+<li>Functions: 100%</li>
+<li>Lines: 81%</li>
+<li>Lines not covered: 39-45</li>
+</ul>
+<figure><img src="/drilonqerimiportfolio/images/TestingSuite.png"
+    alt="Testing Suite">
+</figure>
+
+<p>The functions being at 100% means every function in the component got called at least once when the tests ran, which I thought was good since we manage to put everything there. The rest of the numbers show that the main things a student would actually do are covered, so like clicking on an empty slot, picking a department from the dropdown, selecting a course, and also the case where a course gets rejected and the dropdown stays open.</p>
+<hr>
+<h3 id="for-code-that-is-not-covered-by-tests-why-did-you-not-cover-them">For code that is not covered by tests, why did you not cover them?</h3>
+<p>The uncovered lines are the part where if a student picks &ldquo;Custom course&rdquo; from the dropdown,then a window is shown asking them to type a course in manually. I did not write a test for that because I honestly did not know how to write a test for that. All my other tests just click things and check what shows up, but a this was different and I could not figure out how to make that work in the testing suite, so I just left it out.</p>
+<hr>
+<ul class="pa0">
+  
+</ul>
+
+      
+    </div></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://drilonqe.github.io/drilonqerimiportfolio/" >
+    &copy;  Drilon Qerimi Portfolio 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

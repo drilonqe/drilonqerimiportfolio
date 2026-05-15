@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Drilon Qerimi Portfolio</title>
-    <link>https://drilonqe.github.io/drilonqerimiportfolio/</link>
-    <description>Recent content on Drilon Qerimi Portfolio</description>
+    <title>Competencies on Drilon Qerimi Portfolio</title>
+    <link>https://drilonqe.github.io/drilonqerimiportfolio/competencies/</link>
+    <description>Recent content in Competencies on Drilon Qerimi Portfolio</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="https://drilonqe.github.io/drilonqerimiportfolio/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://drilonqe.github.io/drilonqerimiportfolio/competencies/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Collaboration</title>
       <link>https://drilonqe.github.io/drilonqerimiportfolio/competencies/collaboration/</link>

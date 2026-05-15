@@ -2,3 +2,8 @@ baseURL = "https://drilonqe.github.io/drilonqerimiportfolio/"
 languageCode = "en-us"
 title = "Drilon Qerimi Portfolio"
 theme = "ananke"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
